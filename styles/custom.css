@@ -1,0 +1,15 @@
+/* styles/custom.css */
+body {
+    background: url('../images/background.png') no-repeat center center fixed;
+    background-size: cover;
+    color: #ffffff; /* Ensure text is readable */
+    font-family: 'Arial', sans-serif;
+}
+.header, .footer {
+    background: rgba(0, 0, 0, 0.7); /* Add semi-transparent background to header/footer */
+    padding: 10px 0;
+}
+.card {
+    background: rgba(255, 255, 255, 0.9); /* Add a subtle background to rank cards */
+    color: #000000; /* Text color inside cards */
+}
